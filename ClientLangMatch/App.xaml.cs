@@ -1,4 +1,6 @@
-﻿namespace ClientLangMatch;
+﻿using ClientLangMatch.Views;
+
+namespace ClientLangMatch;
 
 public partial class App : Application
 {
@@ -6,6 +8,7 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new AppShell();
+		//MainPage = new AppShell();
+		MainPage = new BaseView();
 	}
 }

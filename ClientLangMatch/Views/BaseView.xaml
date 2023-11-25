@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientLangMatch.Views.BaseView"
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             Title="Base App View">
+    
+    <!--feed page-->
+    <ContentPage
+        IconImageSource="icon_feed.svg">
+        
+    </ContentPage>
+    
+    <!--Searsh page-->
+    <ContentPage
+        IconImageSource="icon_searsh.svg">
+        
+        <Grid RowDefinitions="auto, *">
+            <Label Grid.Row="0" Text="All Users"/>
+            <CollectionView Grid.Row="1" x:Name="collectionView"
+                    SelectionMode="Single"
+                    SelectionChanged="OnSelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Name}" FontSize="Medium" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--<ListView Grid.Row="1" ItemsSource="{Binding Users}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+            
+        </Grid>
+        
+    </ContentPage>
+    
+    <!--Add page-->
+    <ContentPage
+        IconImageSource="icon_add.svg">
+
+    </ContentPage>
+
+    <!--statistics page-->
+    <ContentPage
+        IconImageSource="icon_book.svg">
+
+    </ContentPage>
+
+    <!--profile page-->
+    <ContentPage
+        IconImageSource="icon_profile.svg">
+
+    </ContentPage>
+    
+</TabbedPage>

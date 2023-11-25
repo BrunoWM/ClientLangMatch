@@ -153,5 +153,138 @@ namespace ClientLangMatch.Services
             }
         }
 
+        //-------------------------------------------
+
+        public async Task<List<Article>> GetAllArticlesOfAnUser(int userId)
+        {
+            List<Article> userArticles = new List<Article>();
+
+            if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
+            {
+                Debug.WriteLine("-----> No internet access!");
+                return userArticles;
+            }
+
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync($"{_url}/User/articles/{userId}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+
+                    userArticles = JsonSerializer.Deserialize<List<Article>>(content, _jsonSerializerOptions);
+                }
+                else
+                {
+                    Debug.WriteLine("-----> No successfull status code!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"------> Temos uma execessão: {ex.Message}");
+            }
+
+            return userArticles;
+        }
+
+        public async Task<List<Post>> GetAllPostsOfAnUser(int userId)
+        {
+            List<Post> userPosts = new List<Post>();
+
+            if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
+            {
+                Debug.WriteLine("-----> No internet access!");
+                return userPosts;
+            }
+
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync($"{_url}/User/post/{userId}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+
+                    userPosts = JsonSerializer.Deserialize<List<Post>>(content, _jsonSerializerOptions);
+                }
+                else
+                {
+                    Debug.WriteLine("-----> No successfull status code!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"------> Temos uma execessão: {ex.Message}");
+            }
+
+            return userPosts;
+        }
+
+        public async Task<List<Language>> GetAllLanguagesOfAnUser(int userId)
+        {
+            List<Language> userLanguages = new List<Language>();
+
+            if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
+            {
+                Debug.WriteLine("-----> No internet access!");
+                return userLanguages;
+            }
+
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync($"{_url}/User/laguage/{userId}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+
+                    userLanguages = JsonSerializer.Deserialize<List<Language>>(content, _jsonSerializerOptions);
+                }
+                else
+                {
+                    Debug.WriteLine("-----> No successfull status code!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"------> Temos uma execessão: {ex.Message}");
+            }
+
+            return userLanguages;
+        }
+
+        public async Task<List<StudyLog>> GetAllStudyLogsOfAnUser(int userId)
+        {
+            List<StudyLog> userStudyLogs = new List<StudyLog>();
+
+            if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
+            {
+                Debug.WriteLine("-----> No internet access!");
+                return userStudyLogs;
+            }
+
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync($"{_url}/User/studyLog/{userId}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+
+                    userStudyLogs = JsonSerializer.Deserialize<List<StudyLog>>(content, _jsonSerializerOptions);
+                }
+                else
+                {
+                    Debug.WriteLine("-----> No successfull status code!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"------> Temos uma execessão: {ex.Message}");
+            }
+
+            return userStudyLogs;
+        }
     }
 }
